@@ -55,6 +55,9 @@
 	<array>
 		<string>Agdasima-Bold.ttf</string>
 		<string>Agdasima-Regular.ttf</string>
+		<string>Oswald-Bold.ttf</string>
+		<string>Oswald-Regular.ttf</string>
+		<string>Oswald-SemiBold.ttf</string>
 	</array>
 </dict>
 </plist>
