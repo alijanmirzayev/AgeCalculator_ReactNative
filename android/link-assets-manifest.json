@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Agdasima-Bold.ttf",
+      "sha1": "75fd90c4ea2019e61787b15123819b7b4d39f7ee"
+    },
+    {
+      "path": "src/assets/fonts/Agdasima-Regular.ttf",
+      "sha1": "4e047702c298778c8c423f999d0264836b1ade4e"
+    }
+  ]
+}
