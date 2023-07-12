@@ -1,20 +1,26 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react-native'
 import React from 'react'
 import { COLORS } from '../constants/Colors'
+import { TOOLS } from '../datas/Tools'
 import SettingSvg from '../assets/Icons/SettingSvg'
+import SaveSvg from '../assets/Icons/SaveSvg'
 import DateInput from '../components/DateInput'
 import Button from '../components/Button'
+import Tool from '../components/Tool'
 
-const Tools = ({navigation}: any) => {
+const Tools = ({ navigation }: any) => {
   return (
     <SafeAreaView style={styles.container}>
 
       {/* Header Text */}
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Age Calculator</Text>
-        <View style={styles.settingIcon}>
+        <TouchableOpacity onPress={() => navigation.navigate("Settings")} style={styles.settingIcon}>
           <SettingSvg fill="white" />
-        </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Favorites")} style={styles.saveIcon}>
+          <SaveSvg fill="white" />
+        </TouchableOpacity>
       </View>
 
       {/* Date Selector */}
@@ -25,11 +31,22 @@ const Tools = ({navigation}: any) => {
 
       {/* Calculate Button */}
       <View style={styles.btnContainer}>
-        <Button title="CALCULATE AGE" backgroundColor={COLORS.LIGHT.button} fontSize={22} handle={() => navigation.navigate("AgeCalculator")}/>
+        <Button title="CALCULATE AGE" backgroundColor={COLORS.LIGHT.button} fontSize={22} handle={() => navigation.navigate("AgeCalculator")} />
       </View>
 
-      {/* Saved Birthdays Dashboard Banner */}
-      
+      {/* Ads Banner */}
+      <View style={styles.adsBanner}>
+        <Text style={styles.adsText}>Advertising</Text>
+        <Image style={{width: "auto", height: 90}} source={{uri: "https://theonlineadvertisingguide.com/wp-content/uploads/2019/04/Gls_320x50.png"}} />
+      </View>
+
+      {/* All Tools */}
+      <FlatList 
+        data={TOOLS}
+        numColumns={3}
+        showsVerticalScrollIndicator={false}
+        renderItem={({item}) => <Tool item={item} />}
+      />
 
     </SafeAreaView>
   )
@@ -60,6 +77,11 @@ const styles = StyleSheet.create({
     right: 20,
     top: 20
   },
+  saveIcon: {
+    position: "absolute",
+    left: 20,
+    top: 17
+  },
   dateSelecetorContainer: {
     backgroundColor: COLORS.LIGHT.headerBackground,
     paddingVertical: 12,
@@ -70,5 +92,16 @@ const styles = StyleSheet.create({
   btnContainer: {
     marginHorizontal: 16,
     marginVertical: 12
+  },
+  adsBanner: {
+    marginHorizontal: 12,
+    maxHeight: 90,
+    marginBottom: 16
+  },
+  adsText: {
+    textAlign: "center",
+    fontSize: 14,
+    color: COLORS.LIGHT.button,
+    fontFamily: "Agdasima-Regular"
   }
 })
