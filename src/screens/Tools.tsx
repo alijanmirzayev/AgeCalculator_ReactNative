@@ -7,6 +7,7 @@ import SaveSvg from '../assets/Icons/SaveSvg'
 import DateInput from '../components/DateInput'
 import Button from '../components/Button'
 import Tool from '../components/Tool'
+import { dateConverter } from '../helpers/dateConverter'
 
 const Tools = ({ navigation }: any) => {
   return (
@@ -25,8 +26,8 @@ const Tools = ({ navigation }: any) => {
 
       {/* Date Selector */}
       <View style={styles.dateSelecetorContainer}>
-        <DateInput title="Current Date" initalText="21-04-2023" />
-        <DateInput title="Date of Birth" initalText="DD-MM-YYYY" />
+        <DateInput title="Current Date" initalText={dateConverter(new Date())} />
+        <DateInput title="Date of Birth" initalText="DD/MM/YYYY" />
       </View>
 
       {/* Calculate Button */}
@@ -37,7 +38,7 @@ const Tools = ({ navigation }: any) => {
       {/* Ads Banner */}
       <View style={styles.adsBanner}>
         <Text style={styles.adsText}>Advertising</Text>
-        <Image style={{width: "auto", height: 90}} source={{uri: "https://theonlineadvertisingguide.com/wp-content/uploads/2019/04/Gls_320x50.png"}} />
+        <Image style={{width: "100%", height: 90, resizeMode: "stretch"}} source={{uri: "https://theonlineadvertisingguide.com/wp-content/uploads/2019/04/Gls_320x50.png"}} />
       </View>
 
       {/* All Tools */}
@@ -96,12 +97,13 @@ const styles = StyleSheet.create({
   adsBanner: {
     marginHorizontal: 12,
     maxHeight: 90,
-    marginBottom: 16
+    marginBottom: 22
   },
   adsText: {
     textAlign: "center",
     fontSize: 14,
     color: COLORS.LIGHT.button,
-    fontFamily: "Agdasima-Regular"
+    fontFamily: "Agdasima-Regular",
+    marginBottom: 4
   }
 })

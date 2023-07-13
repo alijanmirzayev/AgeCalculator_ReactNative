@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import DatePicker from 'react-native-date-picker'
 import DateSvg from '../assets/Icons/DateSvg'
 import { COLORS } from '../constants/Colors'
+import { dateConverter } from '../helpers/dateConverter'
 
 const DateInput = ({ title, initalText }: any) => {
 
@@ -24,8 +25,7 @@ const DateInput = ({ title, initalText }: any) => {
                 date={date}
                 onConfirm={(date) => {
                     setOpen(false)
-                    setDate(date)
-                    setText(date.toString())
+                    setText(dateConverter(date))
                 }}
                 onCancel={() => {
                     setOpen(false)
