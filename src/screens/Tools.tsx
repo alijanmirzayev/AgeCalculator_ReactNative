@@ -1,15 +1,16 @@
-import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react-native'
 import React from 'react'
+import { FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import SaveSvg from '../assets/Icons/SaveSvg'
+import SettingSvg from '../assets/Icons/SettingSvg'
+import Button from '../components/Button'
+import DateInput from '../components/DateInput'
+import Tool from '../components/Tool'
 import { COLORS } from '../constants/Colors'
 import { TOOLS } from '../datas/Tools'
-import SettingSvg from '../assets/Icons/SettingSvg'
-import SaveSvg from '../assets/Icons/SaveSvg'
-import DateInput from '../components/DateInput'
-import Button from '../components/Button'
-import Tool from '../components/Tool'
 import { dateConverter } from '../helpers/dateConverter'
 
 const Tools = ({ navigation }: any) => {
+
   return (
     <SafeAreaView style={styles.container}>
 
@@ -26,8 +27,8 @@ const Tools = ({ navigation }: any) => {
 
       {/* Date Selector */}
       <View style={styles.dateSelecetorContainer}>
-        <DateInput title="Current Date" initalText={dateConverter(new Date())} />
-        <DateInput title="Date of Birth" initalText="DD/MM/YYYY" />
+        <DateInput title="Current Date" initalText={dateConverter(new Date())}/>
+        <DateInput title="Date of Birth" initalText="DD/MM/YYYY"/>
       </View>
 
       {/* Calculate Button */}

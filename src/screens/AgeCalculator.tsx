@@ -1,10 +1,11 @@
 import React from 'react'
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native'
 import LeftArrowSvg from '../assets/Icons/LeftArrowSvg'
 import ShareSvg from '../assets/Icons/ShareSvg'
 import AgeDashboard from '../components/AgeDashboard'
 import { COLORS } from '../constants/Colors'
 import NextBirthdayDasboard from '../components/NextBirthdayDasboard'
+import AgeFactsDashboard from '../components/AgeFactsDashboard'
 
 const AgeCalculator = ({ navigation }: any) => {
   return (
@@ -26,15 +27,24 @@ const AgeCalculator = ({ navigation }: any) => {
         <Input placeholder="Enter the Name: John" icon={<NameSvg />}/>
       </View> */}
 
-      {/* Age Dashboard */}
-      <View style={styles.ageDashboard}>
-        <AgeDashboard totalCount={true} />
-      </View>
+      <ScrollView showsVerticalScrollIndicator={false} style={{marginBottom: 2}}>
 
-      {/* Next Birthday Dashboard */}
-      <View style={styles.nextBirtdayDashboard}>
-        <NextBirthdayDasboard />
-      </View>
+        {/* Age Dashboard */}
+        <View style={styles.ageDashboard}>
+          <AgeDashboard totalCount={true} />
+        </View>
+
+        {/* Next Birthday Dashboard */}
+        <View style={styles.nextBirtdayDashboard}>
+          <NextBirthdayDasboard />
+        </View>
+
+        {/* Age Facts Dashboard */}
+        <View style={styles.ageFactsDashboard}>
+          <AgeFactsDashboard />
+        </View>
+
+      </ScrollView>
 
     </SafeAreaView>
   )
@@ -82,4 +92,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginTop: 18,
   },
+  ageFactsDashboard: {
+    marginHorizontal: 16,
+    marginTop: 18,
+  }
 })

@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import BirthdayCakeSvg from '../assets/Icons/BirthdayCakeSvg'
 import SendSvg from '../assets/Icons/SendSvg'
 import { COLORS } from '../constants/Colors'
+import { useSelector } from 'react-redux'
+import { StateType } from '../redux'
+import { nextBirthday } from '../helpers/NextBirthday'
 
 const NextBirthdayDasboard = () => {
+
+    const { currentDate, dateOfBirth } = useSelector((state: StateType) => state.DateSlice)
+    const [remaining, setremaining] = useState<any>({ remainingMonths: 0, remainingDays: 0})
+
+    useEffect(() => {
+        setremaining(nextBirthday(dateOfBirth))
+    }, [])
+
     return (
         <View style={styles.container}>
 
@@ -21,8 +32,8 @@ const NextBirthdayDasboard = () => {
             <View style={styles.ageContainer}>
                 <Text style={styles.info}>Time left until next birthday</Text>
                 <View style={styles.nextBirthdayContainer}>
-                    <Text style={styles.text}>10 Months</Text>
-                    <Text style={styles.text}>26 Days</Text>
+                    <Text style={styles.text}>{remaining?.remainingMonths} Months</Text>
+                    <Text style={styles.text}>{remaining?.remainingDays} Days</Text>
                 </View>
                 <TouchableOpacity style={styles.birthdayCountdown}>
                     <Text style={styles.birthdayCountdownText}>See Birthday Countdown</Text>
@@ -99,7 +110,7 @@ const styles = StyleSheet.create({
         padding: 8,
         borderBottomLeftRadius: 8,
         borderBottomRightRadius: 8,
-        marginTop: 12,
+        marginTop: 16,
         marginBottom: -1
     },
     birthdayCountdownText: {

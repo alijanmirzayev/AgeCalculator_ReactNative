@@ -1,10 +1,22 @@
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { COLORS } from '../constants/Colors'
+import { useSelector } from 'react-redux'
 import HumanSvg from '../assets/Icons/HumanSvg'
 import SendSvg from '../assets/Icons/SendSvg'
+import { COLORS } from '../constants/Colors'
+import { AgeCalculator } from '../helpers/AgeCalculator'
+import { StateType } from '../redux'
+import { Date } from '../types/date'
 
 const AgeDashboard = ({ totalCount }: any) => {
+
+    const { currentDate, dateOfBirth } = useSelector((state: StateType) => state.DateSlice)
+    const [age, setage] = useState<Date>({ years: 0, months: 0, days: 0, timeDiff: 0})
+
+    useEffect(() => {
+        setage(AgeCalculator(currentDate, dateOfBirth))
+    }, [])
+
     return (
         <View style={styles.container}>
 
@@ -19,9 +31,9 @@ const AgeDashboard = ({ totalCount }: any) => {
             <View style={styles.divider} />
 
             <View style={styles.ageContainer}>
-                <Text style={styles.text}>24 Years</Text>
-                <Text style={styles.text}>10 Months</Text>
-                <Text style={styles.text}>26 Days</Text>
+                <Text style={styles.text}>{age?.years} Years</Text>
+                <Text style={styles.text}>{age?.months} Months</Text>
+                <Text style={styles.text}>{age?.days} Days</Text>
             </View>
 
             {
@@ -36,13 +48,13 @@ const AgeDashboard = ({ totalCount }: any) => {
                         <Text style={styles.totalText}>Total Seconds:</Text>
                     </View>
                     <View style={styles.totalCountTextContainer}>
-                        <Text style={styles.totalCountText}>24</Text>
-                        <Text style={styles.totalCountText}>12</Text>
-                        <Text style={styles.totalCountText}>12312</Text>
-                        <Text style={styles.totalCountText}>453453453</Text>
-                        <Text style={styles.totalCountText}>3434543534534534:</Text>
-                        <Text style={styles.totalCountText}>0928398239842938</Text>
-                        <Text style={styles.totalCountText}>9123791283918391289381293</Text>
+                        <Text style={styles.totalCountText}>{age?.years}</Text>
+                        <Text style={styles.totalCountText}>{(age?.years * 12) + age?.months}</Text>
+                        <Text style={styles.totalCountText}>{Math.floor(age.timeDiff / 604800000)}</Text>
+                        <Text style={styles.totalCountText}>{Math.floor(age.timeDiff / 86400000)}</Text>
+                        <Text style={styles.totalCountText}>{Math.floor(age.timeDiff / 3600000)}</Text>
+                        <Text style={styles.totalCountText}>{Math.floor(age.timeDiff / 60000)}</Text>
+                        <Text style={styles.totalCountText}>{Math.floor(age.timeDiff / 1000)}</Text>
                     </View>
                 </View> : null
             }
