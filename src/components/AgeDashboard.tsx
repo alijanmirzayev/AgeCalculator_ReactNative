@@ -16,7 +16,6 @@ const AgeDashboard = ({ totalCount }: any) => {
     useEffect(() => {
         setage(AgeCalculator(currentDate, dateOfBirth))
     }, [])
-
     return (
         <View style={styles.container}>
 

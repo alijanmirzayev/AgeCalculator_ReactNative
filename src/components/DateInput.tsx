@@ -7,8 +7,9 @@ import { dateConverter } from '../helpers/dateConverter'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../redux'
 import { updateCurrentDate, updateDateOfBirth } from '../redux/Slices/DateSlice'
+import moment from 'moment'
 
-const DateInput = ({ title, initalText }: any) => {
+const DateInput = ({ title, initalText, change }: any) => {
 
     const dispatch = useDispatch<AppDispatch>();
 
@@ -19,34 +20,41 @@ const DateInput = ({ title, initalText }: any) => {
     return (
         <>
             <Text style={styles.title}>{title}</Text>
-            <TouchableOpacity style={styles.btn} onPress={() => setOpen(true)}>
-                <Text style={styles.btnText}>{text}</Text>
-                <DateSvg />
-            </TouchableOpacity>
-            <DatePicker
-                modal
-                mode="date"
-                theme='light'
-                maximumDate={new Date()}
-                minimumDate={new Date("1961-01-01")}
-                open={open}
-                date={date}
-                onConfirm={(date) => {
-                    setOpen(false)
-                    setText(dateConverter(date))
-                    if (title == "Current Date") {
-                        dispatch(updateCurrentDate(date.toISOString()))
-                        return
-                    }
-                    if (title == "Date of Birth") {
-                        dispatch(updateDateOfBirth(date.toISOString()))
-                        return
-                    }
-                }}
-                onCancel={() => {
-                    setOpen(false)
-                }}
-            />
+            {
+                change ? <>
+                    <TouchableOpacity style={styles.btn} onPress={() => setOpen(true)}>
+                        <Text style={styles.btnText}>{text}</Text>
+                        <DateSvg />
+                    </TouchableOpacity>
+                    <DatePicker
+                        modal
+                        mode="date"
+                        theme='light'
+                        maximumDate={new Date()}
+                        minimumDate={new Date("1961-01-01")}
+                        open={open}
+                        date={date}
+                        onConfirm={(date) => {
+                            setOpen(false)
+                            setText(dateConverter(date))
+                            if (title == "Current Date") {
+                                dispatch(updateCurrentDate(date.toISOString()))
+                                return
+                            }
+                            if (title == "Date of Birth") {
+                                dispatch(updateDateOfBirth(date.toISOString()))
+                                return
+                            }
+                        }}
+                        onCancel={() => {
+                            setOpen(false)
+                        }}
+                    />
+                </> : <View style={styles.btn}>
+                    <Text style={styles.btnText}>{text}</Text>
+                    <DateSvg />
+                </View>
+            }
         </>
     )
 }

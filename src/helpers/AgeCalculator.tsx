@@ -3,6 +3,10 @@ export function AgeCalculator(currentDates: string, dateOfBirths: string) {
     const currentDate = new Date(currentDates);
     const dateOfBirth = new Date(dateOfBirths);
 
+    if (dateOfBirth.toISOString().slice(0, 10) == currentDate.toISOString().slice(0, 10)) {
+        return { years: 0, months: 0, days: 0, timeDiff: 0};
+    }
+
     const timeDiff = currentDate.getTime() - dateOfBirth.getTime();
 
     // Yıl hesaplaması

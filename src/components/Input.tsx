@@ -1,36 +1,41 @@
-import { StyleSheet, Text, View, TextInput } from 'react-native'
+import { StyleSheet, Text, View, TextInput, ScrollView, KeyboardAvoidingView, Platform, Keyboard } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import React from 'react'
+import { COLORS } from '../constants/Colors'
 
-const Input = ({placeholder, icon}: any) => {
+const Input = ({ placeholder, icon }: any) => {
     return (
-        <View style={styles.container}>
-            <TextInput
-                placeholder={placeholder}
-                placeholderTextColor="#4f4f4f"
-                style={styles.input}
-            />
-            <View style={styles.icon}>
-                {icon}
+            <View style={styles.container}>
+                <TextInput
+                    placeholder={placeholder}
+                    placeholderTextColor="white"
+                    style={styles.input}
+                />
+                <View style={styles.icon}>
+                    {icon}
+                </View>
             </View>
-        </View>
     )
 }
 
 export default Input
 
 const styles = StyleSheet.create({
+    keyboardContainer: {
+        flex: 1,
+    },
     container: {
-        backgroundColor: "white",
+        backgroundColor: COLORS.LIGHT.button,
         borderRadius: 6,
         paddingHorizontal: 12
     },
     input: {
-        color: "#4f4f4f",
+        color: "white",
         fontFamily: "Agdasima-Regular",
-        fontSize: 16,
+        fontSize: 20,
         marginLeft: 22,
     },
-    icon :{
-        position:"absolute", top: 12, left: 10
+    icon: {
+        position: "absolute", top: 12, left: 10
     }
 })

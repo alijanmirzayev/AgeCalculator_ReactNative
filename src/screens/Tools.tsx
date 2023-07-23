@@ -21,14 +21,14 @@ const Tools = ({ navigation }: any) => {
           <SettingSvg fill="white" />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Favorites")} style={styles.saveIcon}>
-          <SaveSvg fill="white" />
+          <SaveSvg fill="#fa776e" />
         </TouchableOpacity>
       </View>
 
       {/* Date Selector */}
       <View style={styles.dateSelecetorContainer}>
-        <DateInput title="Current Date" initalText={dateConverter(new Date())}/>
-        <DateInput title="Date of Birth" initalText="DD/MM/YYYY"/>
+        <DateInput title="Current Date" initalText={dateConverter(new Date())} change={false}/>
+        <DateInput title="Date of Birth" initalText="DD/MM/YYYY" change={true}/>
       </View>
 
       {/* Calculate Button */}
